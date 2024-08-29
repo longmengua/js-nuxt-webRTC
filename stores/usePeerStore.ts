@@ -16,9 +16,12 @@ export const usePeerStore = defineStore('peer', () => {
       return
     return new Promise<void>((resolve) => {
       peer.value = new Peer(generateID(10), {
-        // host: 'localhost',
-        // port: 3001,
-        // path: '/',
+        // 改成自定義的 STUN 服务器
+        // config: {
+        //   iceServers: [
+        //     { urls: 'stun:stun.example.com:3478' } 
+        //   ]
+        // }
       })
       peer.value.on('open', (id) => {
         peerId.value = id
