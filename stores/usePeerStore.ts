@@ -17,11 +17,17 @@ export const usePeerStore = defineStore('peer', () => {
     return new Promise<void>((resolve) => {
       peer.value = new Peer(generateID(10), {
         // 改成自定義的 STUN 服务器
-        // config: {
-        //   iceServers: [
-        //     { urls: 'stun:stun.example.com:3478' } 
-        //   ]
-        // }
+        config: {
+          iceServers: [
+            // { urls: 'stun:stun.l.google.com:19302' },
+            { urls: 'stun:35.187.153.42:3478' },
+            // {
+            //   urls: 'turn:35.187.153.42:5349',
+            //   username: 'funday',  // Replace with actual username from Coturn config
+            //   credential: 'funday' // Replace with actual password from Coturn config
+            // }
+          ]
+        }
       })
       peer.value.on('open', (id) => {
         peerId.value = id
